@@ -1,0 +1,245 @@
+COMMANDS
+
+DISK SPACE:
+du -ah /etc/ | sort -n -r | head -n 10
+ du -hs * | sort -rh | head -5
+sudo find / -xdev -type f -size +400M	
+find -type f -exec du -Sh {} + | sort -rh | head -n 5
+
+find /home/tecmint/Downloads/ -type f -exec du -Sh {} + | sort -rh | head -n 5
+
+find /home/tecmint/Downloads/ -type f -printf "%s %p\n" | sort -rn | head -n 5
+
+
+find /spdata/specapps/uniqlothprod/spec-uniqlo-backend-scripts/product_report/files/TH_product_stock_report* -mtime +30 -exec rm {} \;
+
+find /spdataaspecapps/uniqlothprod/spec-uniqlo-backend-scripts/product_report/files/WMS_TAG_PRINTING* -mtime +30 -exec ls -ltr {} \;
+
+MEMORY:
+ps axo %mem,pid,euser,cmd|sort -nr|head -n 10
+
+sync; echo 3 > /proc/sys/vm/drop_caches
+
+kill -9 $(ps aux | grep 'chrome' | awk '{print $2}')
+
+wA68jjH#Mm
+
+CRON:
+grep -r logrotate /etc/cron*
+logrotate --force /etc/logrotate.conf
+
+PASSWORD CHANGE:
+echo "linuxpassword" | passwd --stdin linuxuser
+
+sudo usermod --password (passwordname) satish(user) 
+
+ls -alR target/
+
+To check Restart of service:
+service varnish status
+ ps -o lstart= -p 8249
+
+Restart Apache Issue:
+Make sure you are not declaring Listen 80 twice in .conf files.
+For example, you might have it both in ports.conf and inn sites-enabled/www.conf.
+To find out, use: grep -ri listen /etc/apache2
+Keep Listen 80 in just a single place.
+
+netstat -ltnp | grep ':80'
+
+To redirect http to https:
+(Condition to be added in https.conf)
+    RewriteEngine On
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule . https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+
+Command to reset VPN password from Server:
+cd /usr/local/openvpn_as/scripts
+
+password reset 
+./ovpnpasswd -uusername -ppassword
+
+MFA regen
+./sacli --user username GoogleAuthRegen
+**********************************************
+
+
+Tar Command to zip from one directory to another directory:
+
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+
+tar -xzvf archive.tar.gz
+
+
+* -c: Create an archive.
+* -z: Compress the archive with gzip.
+* -v: Display progress in the terminal while creating the archive, also known as “verbose” mode. The v is always optional in these commands, but it’s helpful.
+* -f: Allows you to specify the filename of the archive.
+ 
+* -x: extract/unzips the zip file.
+
+
+Send mail from server:
+ echo "Subject: sendmail test" | sendmail -r noreply@specom.io -s "test" rk@fourninecloud.com
+
+echo "test" |mailx -r store@ml.uniqlo.com.sg -s 'test' rajesh.rk0941@gmail.com
+
+echo "This is the body of the email" | mail -s "This is the subject line" user@example.com
+
+
+
+
+Find Command:
+find / -type f -iname 'appveyor.yml'
+
+Keygen Convert:
+ssh-keygen -i -f Public_key>Public_key-id-rsa
+
+Should we need to copy docroot from any other hosts or will you load your own docroot. Also let us know if we need to create a new DB for this?
+
+SSH ADD NEW KEY:
+ssh-add ~/.ssh/id_rsa_newkeyfile 
+
+SWITCH between PHP VERSIONS:
+update-alternatives --config php
+
+Backup Bash script with log:
+
+#!/bin/sh
+rsync -av user@serverB:/source/folder/ /destination_folder \
+  >/var/log/backup_log 2>&1
+
+
+GPG key updation for Ubuntu when installing PHP:
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4F4EA0AAE5267A6C 
+
+Enable mod-rewrite:
+sudo a2enmod rewrite
+
+php -i|grep 'php.ini'
+
+To show page in an array:
+print_r($_SERVER);exit;
+
+To check who all logged in linux: 
+last|head
+
+Command to know the shells:
+cat /etc/shells
+echo $0
+echo $SHELL
+ps -p $$
+env | grep ^SHELL=
+
+Command to search and replace path [abc/ to abc/data] in vi :
+:%s;abc/;abc/data;g
+:%s/FindMe/ReplaceME/g
+%s/\/*!50017 DEFINER=`partylite`@`%`*/\/ /g
+%s/\/*!50017 DEFINER=`uple`@`%`*/\/ /g
+%s/\/!50017 DEFINER=`sabonadmin`@`%`*/\/ /g
+:%s/\/*!50017 DEFINER=`pl-dev-002-user`@`%`*/\/ /g
+php bin/magento admin:user:create --admin-user=‘anand’ --admin-password=‘admin@12’
+
+sed -r -i 's/\sDEFINER=`[^`]+`@`[^`]+`//'  /var/www/pleshop/var/pex_na_feb_14.sql (by Sampath)
+
+sed -r -i 's/\sDEFINER=`[^`]+`@`[^`]+`//'  /var/www/pleshop/var/pex_na_feb_14.sql (by Sampath)
+
+set foreign_key_checks=0;
+truncate admin_user;
+truncate admin_passwords;
+set foreign_key_checks=1;
+
+php bin/magento admin:user:create
+
+php bin/magento admin:user:create --admin-user=admin-thiru --admin-password=admin@12 --admin-email=thirumal@codem.com --admin-firstname=thirumal --admin-lastname=rk
+
+www-data@magentoQa-admin-6g1:~/pleshop$ php bin/magento admin:user:create --admin-user='admin-magento' --admin-password='admin@12' --admin-email='admin@codem.com' --admin-firstname='admin' --admin-lastname='magneto'
+
+*!50017 DEFINER=`uple`@`%`*aa
+
+
+nc -uvz xxx.xxx.xxx.xxx 1194
+
+Command to delete all deleted LSOF files:
+
+lsof +L1 | grep 'deleted' | awk '{print $2}' | xargs kill -9
+
+Detail stat of a file/dir
+$stat <path/to/file>
+
+Command when all the pl001 sysyem crashed:
+mount -o remount,rw /
+
+tee Command example:
+ls /home/rajesh/|tee pipe1.txt|grep ^f|tee pipe2.txt|sort -r
+
+Command to know the Linux version:
+cat /proc/version
+hostnamectl
+lsb_release -a
+uname -r
+
+Password auth in ssh for users:
+Match User <username>
+  PasswordAuthentication yes
+
+
+Add ONLY apache restart for user/group:
+visudo -f /etc/sudoers.d/<file-name>
+username ALL = /etc/init.d/apache2 
+—If you want to not have to type in a password before you do this, use the following:
+username ALL = NOPASSWD: /etc/init.d/apache2 
+%group-name = /etc/init.d/apache2 
+
+
+Repeat a unix command every x seconds:
+while sleep 3; do (ps -ef|grep chromedriver|wc -l); done
+
+watch -n1 -x command
+
+Command to run server stats script in local:
+ssh servername ‘bash -s’ <serverstats.sh
+
+LINUX BASIC COMMANDS:
+$ printenv
+$ alias
+$ grep se /etc/passwd|cut -d: -f1,3|sort|tr ":" " "|column -t
+$ dmesg
+$ lsmod
+$ ldd /bin/cp
+$ kill -l
+
+Cretaing new .htpasswd file and password:
+htpasswd -c /etc/apache2/.htpasswd devuser
+htpasswd htpasswd /etc/apache2/.htpasswd devuser
+
+Qj6@Y*7%tNH2
+command to extend the file system on each volume:
+sudo resize2fs /dev/xvda1
+
+namp command to check TLS version:
+nmap --script ssl-enum-ciphers -p 443 www.example.com
+
+Command-Script to Install SSM agent:
+#!/bin/bash
+cd /tmp
+sudo yum install -y https://s3.amazonaws.com/ec2-download...
+yum install -y amazon-ssm-agent.rpm
+sudo systemctl start amazon-ssm-agent
+sudo systemctl enable amazon-ssm-agent
+
+truncate command:
+ truncate -s 100K file.txt
+The M, G, T, P, E, Z, and Y may be used in place of "K" as required.
+
+Testing on ui-04:
+/var/www/docroot/vendor/magento/zendframework1/library/Zend/Sessions.php
+disable /session_set_cookie
+
+Nginix command:
+grep server_name /etc/nginx/* -RiI
+
+Apache log dig:
+cat access.log | awk ‘(print $1)’ | sort | uniq -c | sort -n |tail -10
+
+cat /etc/*release*
