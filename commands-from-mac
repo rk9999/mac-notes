@@ -1,4 +1,4 @@
-COMMANDS
+COMMANDS:
 
 DISK SPACE:
 du -ah /etc/ | sort -n -r | head -n 10
