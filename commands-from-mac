@@ -1,5 +1,5 @@
 COMMANDS:
-I HAVE ADDED THIS LINE TO TEST PULL 
+I HAVE ADDED THIS LINE TO TEST PULL ------- ADDED A NEW WORDS
 DISK SPACE:
 du -ah /etc/ | sort -n -r | head -n 10
  du -hs * | sort -rh | head -5
