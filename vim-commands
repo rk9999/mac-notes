@@ -1,0 +1,49 @@
+VIM Commands
+
+dw- will delete a word
+cw-will insert and start start writing a word, deleting the current word
+.(dot) will continue what is going on
+w- move the cursor a word forward
+b-will move the cursor a word backword
+j-will move the cursor one line down
+2j-moves cursor 2 lines down
+
+https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet/
+
+command+? —highlits the cursor point on mac
+
+
+Command Line shortcuts:
+CTRL-B Move backward one character (without deleting) 
+CTRL-F Move forward one character DEL Delete one character backward CTRL-D Delete one character forward 
+
+emacs-mode word commands 
+
+ESC-B Move one word backward ESC-F Move one word forward 
+ESC-DEL Kill one word backward 
+ESC-CTRL-H Kill one word backward ESC-D Kill one word forward CTRL-Y Retrieve (“yank”) last item killed 
+
+emacs-mode line commands 
+
+CTRL-A Move to beginning of line 
+CTRL-E Move to end of line 
+CTRL-K Kill forward to end of line 
+
+emacs-mode miscellaneous commands 
+
+CTRL-J Same as RETURN CTRL-L Clears the screen, placing the current line at the top of the screen CTRL-M Same as RETURN CTRL-O Same as RETURN, then display next line in command history 
+CTRL-T  Transpose two characters on either side of point and move point forward by one 
+CTRL-U  Kills the line from the beginning to point 
+CTRL-V  Quoted insert  CTRL-[ Same as ESC (most keyboards) ESC-C Capitalize word after point ESC-U Change word after point to all capital letters ESC-L Change word after point to all lowercase letters ESC-. Insert last word in previous command line after point ESC-_ Same as ESC-. 
+
+
+
+Press ESC and press j to move down by one line.
+To move up by one line press k on the keyboard
+Move the cursor to the beginning of a line Press ^
+Move the cursor to the end of a line Press $
+Move the cursor to the beginning of a file 1G
+Move the cursor to the end of a file G
+Moves the cursor to the start of line number “n” in the file nG
+
+
