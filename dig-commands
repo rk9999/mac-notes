@@ -1,31 +1,31 @@
 DIG Commands:
 
   dig text=cname www.sabon.com.sg
- 4710  dig text=cname sabon.com.sg
- 4711  dig sabon.com.sg
- 4712  dig yahoo.com +short
- 4713  dig sabon.com.sg +short
- 4714  dig www.sabon.com.sg +short
- 4715  dig sabon.com.sg MX
- 4716  dig sabon.com.sg SOA
- 4717  dig sabon.com.sg NS
- 4718  dig www.sabon.com.sg NS
- 4719  dig www.sabon.com.sg
- 4720  dig www.sabon.com.sg TTL
-   dig sabon.com.sg TTL
- 4722  dig sabon.com.sg ANY
- 4723  dig sabon.com.sg ANY +noall +answer
- 4724  dig -x 72.30.38.140 +short
- 4725  dig -x 23.227.38.65 +short
- 4726  man dig
- 4727  dig +nocmd sabon.com.sg
- 4728  dig  sabon.com.sg
- 4729  dig  sabon.com.sg +noall +answer
- 4730  dig  sabon.com.sg cname +noall +answer
- 4731  dig  www.sabon.com.sg cname +noall +answer
- 4732  dig  sabon.com.sg txt +noall +answer
- 4733  dig  sabon.com.sg mx +noall +answer
- 4734  dig  sabon.com.sg NS +noall +answer
- 4735  dig  sabon.com.sg any +noall +answer
+  dig text=cname sabon.com.sg
+  dig sabon.com.sg
+  dig yahoo.com +short
+  dig sabon.com.sg +short
+  dig www.sabon.com.sg +short
+  dig sabon.com.sg MX
+  dig sabon.com.sg SOA
+  dig sabon.com.sg NS
+  dig www.sabon.com.sg NS
+  dig www.sabon.com.sg
+  dig www.sabon.com.sg TTL
+  dig sabon.com.sg TTL
+  dig sabon.com.sg ANY
+  dig sabon.com.sg ANY +noall +answer
+  dig -x 72.30.38.140 +short
+  dig -x 23.227.38.65 +short
+  man dig
+  dig +nocmd sabon.com.sg
+  dig  sabon.com.sg
+  dig  sabon.com.sg +noall +answer
+  dig  sabon.com.sg cname +noall +answer
+  dig  www.sabon.com.sg cname +noall +answer
+  dig  sabon.com.sg txt +noall +answer
+  dig  sabon.com.sg mx +noall +answer
+  dig  sabon.com.sg NS +noall +answer
+  dig  sabon.com.sg any +noall +answer
 
 https://www.tecmint.com/10-linux-dig-domain-information-groper-commands-to-query-dns/
