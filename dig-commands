@@ -1,6 +1,6 @@
 DIG Commands:
 
-4709  dig text=cname www.sabon.com.sg
+  dig text=cname www.sabon.com.sg
  4710  dig text=cname sabon.com.sg
  4711  dig sabon.com.sg
  4712  dig yahoo.com +short
@@ -12,7 +12,7 @@ DIG Commands:
  4718  dig www.sabon.com.sg NS
  4719  dig www.sabon.com.sg
  4720  dig www.sabon.com.sg TTL
- 4721  dig sabon.com.sg TTL
+   dig sabon.com.sg TTL
  4722  dig sabon.com.sg ANY
  4723  dig sabon.com.sg ANY +noall +answer
  4724  dig -x 72.30.38.140 +short
