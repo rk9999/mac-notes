@@ -1,0 +1,23 @@
+AWS CLI COMMANDS:
+
+—command to list ec2 instances name, AZ and ID:
+MY USE CASE:
+aws ec2 describe-instances  --filter Name=tag-key,Values=Name --query 'Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key==`Name`]|[0].Value}' --output table
+
+
+aws ec2 describe-instances  --filter Name=tag-key,Values=Name --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' --output table
+
+: : List instances with ID’s, NAME and Server STATUS:
+
+aws ec2 describe-instances --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name}" --filters Name=instance-state-name,Values=running --output table
+
+MY USE CASE:
+
+aws ec2 describe-instances  --filter Name=tag-key,Values=Name --query 'Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key==`Name`]|[0].Value,Status:State.Name}' --output table
+
+
+### CLI command to start Instance with Instance ID:
+
+aws ec2 start-instances --instance-ids i-1234567890abcdef0
+
+aws ec2 describe-instance-status --instance-id. i-1234567890abcdef0
