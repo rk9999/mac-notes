@@ -1,0 +1,58 @@
+SQL Commands:
+http://www.zbeanztech.com/blog/important-mysql-commands
+
+http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+
+https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html
+
+mysqldump  -h ezycomproddb.ckomtq1gn7a6.ap-southeast-1.rds.amazonaws.com —port 3306 -u “ezycro” -password “5sKKK0iivq” > ezycom-proddb.sql
+
+From the last two images we came to conclude that due to hight response time from the server it was only down in Hong Kong region.
+
+To check which Db is in USE:
+SELECT database();
+
+Command to select DB:
+USE database_name;
+
+Command to create DB dump:
+mysqldump -u [uname] -p[pass] db_name > db_backup.sql
+
+
+create database partylite_int;
+ 
+
+show grants for 'demo-user'@'localhost';
+show grants for ‘magentoadmin’@‘localhost';
+
+User grants:
+show grants for 'partylite4'@'localhost';
+show databases;
+SELECT User,Host FROM mysql.user;
+
+REVOKE ALL ON partylite4DB.* FROM 'partylite4'@'localhost';
+
+GRANT ALL ON partylite4DB.* TO 'partylite4'@'localhost'
+
+SELECT USER(), CURRENT_USER();
+ DROP USER 'staging'@'localhost';
+—to check working database
+SELECT DATABASE();
+
+______________________________________________________________
+commands used in staging(Arif and me- 30Jan2018)
+select * from `core_config_data` where path LIKE 'dev/static/sign';
+update `core_config_data` set value=null where `config_id`=2578;
+select * from `core_config_data` where `config_id`=2578;
+update `core_config_data` set value=null where `config_id`=2403;
+
+SELECT * FROM `core_config_data` WHERE `path` LIKE '%static/sign%'
+insert into core_config_data (config_id, scope, scope_id, path, value) values (null, 'default', 0, 'dev/static/sign', 0);
+915	default	0	dev/static/sign	0
+
+SQL commands :
+http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+
+https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html
+
+

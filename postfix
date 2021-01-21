@@ -1,0 +1,178 @@
+POSTFIX: 
+https://easyengine.io/tutorials/mail/postfix-queue/
+qshape command will show shape of active mail queue by default. Ideally it should be as close as to empty since postfix sends email instantly!
+
+Analyze mails in queue
+
+mailq or postqueue -p
+
+Full config explained:
+https://help.ubuntu.com/lts/serverguide/postfix.html
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-on-ubuntu-18-04
+
+Postfix using gmail:
+https://opensource.com/article/18/8/postfix-open-source-mail-transfer-agent
+
+
+##################################################
+
+vi /etc/postfix/main.cf
+ 
+Modify the "mydomain" variable to your email domain
+ 
+mydomain = example.com
+ 
+Make sure to uncomment the proper network interface. I'm usually lazy and just do all.
+ 
+inet_interfaces = all
+ 
+Now at the bottom of this file you need to specify the generic map file for rewriting the address.
+ 
+smtp_generic_maps = hash:/etc/postfix/generic
+ 
+Save and exit main.cf. Now we need to edit /etc/postfix/generic
+ 
+vi /etc/postfix/generic
+ 
+You need to specify the mapping of the original address to the one you want. Since in this case I just want to rewrite everything I usually add the following two lines and it seems to catch everything.
+ 
+ root@example.com   no-reply@example.com
+ @example.com       no-reply@example.com
+ 
+Save and exit the file. Now we need to create the postfix db.
+ 
+postmap /etc/postfix/generic
+ 
+This will create the /etc/postfix/generic.db hash file.
+
+## Port to work for 2525 in postfix we need to add
+2525      inet  n       -       n       -       -       smtpd
+in master.cf
+————————————————————————————————————
+
+tail -f -n 50 /var/log/syslog | grep postfix
+echo "Test Email message body" | mail -s "Email test subject" rajesh@codem.com
+vi /etc/postfix/generic
+
+root@pexMagentoDev-fe-gke.luminex.partylite.local noreply@mail.smtp2go.com
+
+postmap /etc/postfix/generic
+postconf -n
+……
+ses-smtp-user.20181021-200332
+SMTP Username: 
+AKIAIJRIUBNXH7Q74RKA 
+SMTP Password: 
+Ap+U9jzSbp//V1bWcigzlFzE8HioqZ+KOYjmm6j97XLA 
+___________________________________________________________________________________
+ON partylite2.codemapp.com and partylite.codemapp.com
+
+
+sendmail -f deploy@pexMagentoQa-admin-agz.luminex.partylite.local rajesh@codem.com
+From: Sender Name <deploy@pexMagentoQa-admin-agz.luminex.partylite.local>
+Subject: Partylite-5 SES Test Mail                
+This message was sent using Amazon SES by Rk.                
+.
+
+sendmail -f codemapp@Matilda-Dev rajesh.rk0941@gmail.com
+From: Sender Name <codemapp@Matilda-Dev>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk.   
+
+
+sendmail -f codemapp@magentoStaging-fe-m4m.luminex.partylite.local rajesh@codem.com
+From Sender Name <codemapp@magentoStaging-fe-m4m.luminex.partylite.local>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk.                
+.
+
+sendmail -f codemapp@partylite3 rajesh@codem.com
+From: Sender Name <codemapp@partylite3>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES. 
+
+sendmail -f codemapp@Partylite-2 rajesh@codem.com
+From: Sender Name <codemapp@Partylite-2.localdomain>
+Subject: Partylite-2 Mail Test                
+This message was sent using Amazon SES from Partylite-2 Server.
+
+From: Sender Name <webuser@Partylite.localdomain>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk.                
+.
+
+From: Sender Name <pooranan@codem.com>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk. 
+
+
+sendmail -f webmaster@qubevu.com rajesh@codem.com
+From: Sender Name <webmaster@qubevu.com>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk.                
+.
+
+sendmail -f codemapp@partylite3 rajesh@codem.com
+
+—————————————————————————————————————
+Testing on pexprod.prtylite.co.uk
+
+sendmail -f codemapp@pexMagentoProd-fe-kd3.luminex.partylite.local rajesh@codem.com
+From: Sender Name <codemapp@pexMagentoProd-fe-kd3.luminex.partylite.local>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES by Rk.                
+.
+
+Issue: was not able to send mail from codemapp user but was able to send it from root user. 
+Res: Changed config in generic from root to codemapp—
+codemapp@pexMagentoProd-fe-kd3.luminex.partylite.local noreply@mail.smtp2go.com 
+
+———————————————————————————————————————— 
+Scripted in magento staging to send mail
+
+echo -e "Warning, server memory is running low"|mail -A "/tmp/top_proccesses_consuming_memory.txt" -s "from Staging" -t "rajesh@codem.com"
+
+
+
+sendmail -f root@dev-terragencies rajesh.rk0941@gmail.com
+From: Sender Name <root@tg.vayaconnect.com>
+Subject: Mail Testing
+This message sent from teragenics server
+
+LAMP68dd36jkns20190625ff5eaf
+From: Sender Name <LAMP68dd36jkns20190625ff5eaf>
+Subject: Mail Testing
+This message sent from teragenics server
+
+
+From: Sender Name <www-data@pl01>
+Subject: Amazon SES TestFrom PL_DEV                
+This message was sent using Amazon SES. 
+
+sendmail -f www-data@tg.vayaconnect.com rajesh@codem.com
+From: Sender Name <tg.vayaconnect.com>
+Subject: Terragenics test Mail                
+This message was sent using postfix by Rk.
+
+sendmail -f previlliapp@previlli.com rajesh@codem.com
+From: Sender Name <previlliapp@previlli.com>
+Subject: Terragenics test Mail                
+This message was sent using postfix by Rk.
+
+
+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
+
+sendmail -f webuser@pl-dev-002 rajesh@codem.com
+From: Sender Name <webuser@pl-dev-002>
+Subject: Mail Testing
+This message sent from pl-dev-002
+
+sendmail -f webuser@pl-dev-005 rajesh@codem.com
+From: Sender Name <webuser@pl-dev-005>
+Subject: Mail Testing
+This message sent from pl-dev-005
+
+sendmail -f webuser@m23b2b rajesh@codem.com
+From: Sender Name <webuser@m23b2b>
+Subject: Mail Testing
+This message sent from m23b2b
