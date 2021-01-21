@@ -1,0 +1,31 @@
+DIG Commands:
+
+  dig text=cname www.sabon.com.sg
+  dig text=cname sabon.com.sg
+  dig sabon.com.sg
+  dig yahoo.com +short
+  dig sabon.com.sg +short
+  dig www.sabon.com.sg +short
+  dig sabon.com.sg MX
+  dig sabon.com.sg SOA
+  dig sabon.com.sg NS
+  dig www.sabon.com.sg NS
+  dig www.sabon.com.sg
+  dig www.sabon.com.sg TTL
+  dig sabon.com.sg TTL
+  dig sabon.com.sg ANY
+  dig sabon.com.sg ANY +noall +answer
+  dig -x 72.30.38.140 +short
+  dig -x 23.227.38.65 +short
+  man dig
+  dig +nocmd sabon.com.sg
+  dig  sabon.com.sg
+  dig  sabon.com.sg +noall +answer
+  dig  sabon.com.sg cname +noall +answer
+  dig  www.sabon.com.sg cname +noall +answer
+  dig  sabon.com.sg txt +noall +answer
+  dig  sabon.com.sg mx +noall +answer
+  dig  sabon.com.sg NS +noall +answer
+  dig  sabon.com.sg any +noall +answer
+
+https://www.tecmint.com/10-linux-dig-domain-information-groper-commands-to-query-dns/

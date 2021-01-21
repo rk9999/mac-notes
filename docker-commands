@@ -1,0 +1,34 @@
+DOCKER COMMANDS:
+
+docker run nginx
+docker ps
+docker ps -a
+docker stop <container name/id>
+docker rm <container name/id>
+docker rmi nginx
+docker images
+ docker pull nginx
+
+docker exec <container name> cat /etc/hosts
+docker run kodecloud/simple-webapp
+docker run  -d kodecloud/simple-webapp (-d runs in background; detached mode)
+docker attach <docker id/name>
+
+docker run -it centos bash
+
+docker network list
+docker network ls
+docker network inspect bridge
+docker —name mysql-db -d -v /opt/mount:/var/bib/mysql -e 
+docker run -d --name alpine-2 --network=none alpine
+
+docker network create --driver bridge --subnet 182.18.0.1/24 --gateway 182.18.0.1 wp-mysql-network
+
+docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 --network=wp-mysql-network mysql:5.6
+
+docker run --network=wp-mysql-network -e DB_Host=mysql-db -e DB_Password=db_pass123 -p 38080:8080 --name webapp --link mysql-db:mysql-db -d kodekloud/simple-webapp-mysql
+
+docker tag docker101tutorial rk9999/docker101tutorial
+docker push rk9999/docker101tutorial
+
+++++++++++
